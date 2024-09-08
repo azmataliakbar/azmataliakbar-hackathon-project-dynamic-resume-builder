@@ -21,7 +21,7 @@ document.getElementById('resumeForm')?.addEventListener('submit', function(event
   `;
 
   // Insert the resume content into the #resume div
-  const resumeDiv = document.getElementById('resume');
+  /* const resumeDiv = document.getElementById('resume');
   if (resumeDiv) {
     resumeDiv.innerHTML = resumeContent; // Display the generated resume
   }
@@ -38,7 +38,35 @@ if (downloadButton) {
         html2pdf(element);
       }
     };
-  }
+  } */
+
+    const resumeDiv = document.getElementById('resume');
+if (resumeDiv) {
+  resumeDiv.innerHTML = resumeContent; // Display the generated resume
+}
+
+// Show the "Download as PDF" button
+const downloadButton = document.getElementById('download-btn');
+if (downloadButton) {
+  downloadButton.style.display = 'inline-block';
+
+  downloadButton.onclick = function () {
+    // Use html2pdf to generate the PDF with custom margin
+    const element = document.getElementById('resume');
+    if (element) {
+      const opt = {
+        margin: [10, 10, 10, 50], // top, right, bottom, left margins (left is 30px)
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'px', format: 'a4', orientation: 'landscape' }
+      };
+
+      html2pdf().set(opt).from(element).save();
+    }
+  };
+}
+
 
 
 });

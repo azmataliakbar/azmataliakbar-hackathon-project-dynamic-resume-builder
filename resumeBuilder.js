@@ -11,6 +11,24 @@ var _a;
     // Generate the resume content
     var resumeContent = "\n    <h2>Generated Resume</h2>\n    <p><strong>Name:</strong> ".concat(name, "</p>\n    <p><strong>Email:</strong> ").concat(email, "</p>\n    <p><strong>Phone:</strong> ").concat(phone, "</p>\n    <p><strong>Education:</strong> ").concat(education, "</p>\n    <p><strong>Skills:</strong> ").concat(skills, "</p>\n    <p><strong>Work Experience:</strong> ").concat(workExperience, "</p>\n  ");
     // Insert the resume content into the #resume div
+    /* const resumeDiv = document.getElementById('resume');
+    if (resumeDiv) {
+      resumeDiv.innerHTML = resumeContent; // Display the generated resume
+    }
+  
+    // Show the "Download as PDF" button
+    const downloadButton = document.getElementById('download-btn');
+  if (downloadButton) {
+      downloadButton.style.display = 'inline-block';
+  
+      downloadButton.onclick = function () {
+        // Use html2pdf to generate the PDF
+        const element = document.getElementById('resume');
+        if (element) {
+          html2pdf(element);
+        }
+      };
+    } */
     var resumeDiv = document.getElementById('resume');
     if (resumeDiv) {
         resumeDiv.innerHTML = resumeContent; // Display the generated resume
@@ -20,10 +38,17 @@ var _a;
     if (downloadButton) {
         downloadButton.style.display = 'inline-block';
         downloadButton.onclick = function () {
-            // Use html2pdf to generate the PDF
+            // Use html2pdf to generate the PDF with custom margin
             var element = document.getElementById('resume');
             if (element) {
-                html2pdf(element);
+                var opt = {
+                    margin: [10, 10, 10, 50], // top, right, bottom, left margins (left is 30px)
+                    filename: 'resume.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'px', format: 'a4', orientation: 'landscape' }
+                };
+                html2pdf().set(opt).from(element).save();
             }
         };
     }

@@ -41,11 +41,18 @@
     .resume {
       margin-top: 20px;
     }
-    input, textarea {
-      width: 100%;
+    textarea {
+      width: 70%;
       padding: 10px;
       margin-bottom: 10px;
-      margin-left: 50px;
+      margin-left: 10px;
+      font-family: cursive;
+    }
+    input {
+      width: 70%;
+      padding: 10px;
+      margin-bottom: 10px;
+      margin-left: 10px;
       font-family: cursive;
     }
     label {
@@ -76,21 +83,27 @@
   <div>
     <form id="resumeForm">
       <label for="name">Name:</label>
+      <br>
       <input type="text" id="name" required><br><br>
 
       <label for="email">Email:</label>
+      <br>
       <input type="email" id="email" required><br><br>
 
       <label for="phone">Phone:</label>
+      <br>
       <input type="text" id="phone" required><br><br>
 
       <label for="education">Education:</label>
+      <br>
       <textarea id="education" rows="4" cols="50" required></textarea><br><br>
 
       <label for="skills">Skills:</label>
+      <br>
       <textarea id="skills" rows="4" cols="50" required></textarea><br><br>
 
       <label for="workExperience">Work Experience:</label>
+      <br>
       <textarea id="workExperience" rows="4" cols="50" required></textarea><br><br>
 
       <button type="submit">Generate Resume</button>
